@@ -25,8 +25,8 @@ module top_pipeline_tb();
     end
 
     always @ (posedge clk) begin
-        if (value_a == test_value_a &
-            value_b == test_value_b &
+        if (value_a == test_value_a &&
+            value_b == test_value_b &&
             reject_reason == test_reject_reason)
             // keep track of num failing and passing test cases
 
@@ -64,6 +64,10 @@ module top_pipeline_tb();
         test_value_a = 8'b00000000;
         test_value_b = 8'b00000000;
         test_reject_reason = 4'b0001;  // invalid
+        #10
+
+        $display("Passes: %0d, Fails: %0d", pass_count, fail_count); // finish sim and display results
+        $finish;
     end
 
     top_pipeline uut (
