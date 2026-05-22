@@ -6,7 +6,7 @@ This folder contains the Verilog design files for the project.
 
 The current setup includes a simple message parser, a filter to check for an invalid type and a pipeline to connect these and decide the output based on the parsed input and filter result.
 
-```
+```text
                 ┌────────────────┐                   ┌────────────────┐               
     message     │                │   message type    │                │  reject reason
 ───────────────►│ message_parser ├──────────────────►│ message_filter ├───────────►   

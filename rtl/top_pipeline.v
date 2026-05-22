@@ -2,8 +2,8 @@
 
 module top_pipeline(
         input wire [31:0] message,
-        output reg [7:0] value_a,
-        output reg [7:0] value_b,
+        output wire [7:0] value_a,
+        output wire [7:0] value_b,
         output wire [3:0] reject_reason
     );
 
@@ -25,16 +25,13 @@ module top_pipeline(
         .reject_reason(reject_reason)
     );
 
-    // based on filter output, define the pipeline's outputs
-    always @ (*) begin
-        if (message_valid == 1) begin
-            value_a = input_val_a;
-            value_b = input_val_b;
-        end
-        else begin
-            value_a = 0;
-            value_b = 0;
-        end
-    end
+    // set outputs only if the message is valid
+    output_formatter out_format (
+        .input_val_a(input_val_a),
+        .input_val_b(input_val_b),
+        .message_valid(message_valid),
+        .value_a(value_a),
+        .value_b(value_b)
+    );
 
 endmodule
