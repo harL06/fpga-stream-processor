@@ -3,8 +3,8 @@
 module top_pipeline_tb();
 
     reg [31:0] message;
-    wire [3:0] value_a;
-    wire [3:0] value_b;
+    wire [7:0] value_a;
+    wire [7:0] value_b;
     wire [3:0] reject_reason;
 
     initial begin
