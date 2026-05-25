@@ -1,6 +1,6 @@
-# Testbenches
+# Verilog Testbenches
 
-This folder contains simple simulation testbenches for the RTL modules.
+This folder contains simple verilog simulation testbenches for the RTL modules.
 
 ## Current status
 
