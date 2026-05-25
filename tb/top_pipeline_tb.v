@@ -37,33 +37,45 @@ module top_pipeline_tb();
 
     initial begin
         message = 32'b0000_0000_11111111_00001111_00000000;
-        test_value_a = 8'b11111111;
-        test_value_b = 8'b00001111;
-        test_reject_reason = 4'b0000;
-        #10 // valid
+        test_value_a = 8'b00000000; //255
+        test_value_b = 8'b00000000; //15
+        test_reject_reason = 4'b0010;
+        #10 // invalid - A too highj
 
         message = 32'b0000_0000_11110000_11110000_00000000;
-        test_value_a = 8'b11110000;
-        test_value_b = 8'b11110000;
-        test_reject_reason = 4'b0000;
-        #10 // valid
+        test_value_a = 8'b00000000; //240
+        test_value_b = 8'b00000000; //240
+        test_reject_reason = 4'b0010;
+        #10 // invalid - A too high (checks A first)
 
-        message = 32'b0000_0000_01010101_10101010_00000000;
-        test_value_a = 8'b01010101;
-        test_value_b = 8'b10101010;
+        message = 32'b0000_0000_01010101_11001101_00000000;
+        test_value_a = 8'b00000000; //85
+        test_value_b = 8'b00000000; //205
+        test_reject_reason = 4'b0011;
+        #10 // invalid - B too high
+
+        message = 32'b0000_0000_00000101_00000011_00000000;
+        test_value_a = 8'b00000101; //5
+        test_value_b = 8'b00000011; //3
         test_reject_reason = 4'b0000;
-        #10 // valid
+        #10 // valid - passes filter
+
+        message = 32'b0000_0000_11001000_11001000_00000000;
+        test_value_a = 8'b11001000; //200
+        test_value_b = 8'b11001000; //200
+        test_reject_reason = 4'b0000;
+        #10 // valid - passes filter
 
         message = 32'b0001_0000_01010101_10101010_00000000;
         test_value_a = 8'b00000000;
         test_value_b = 8'b00000000;
         test_reject_reason = 4'b0001;
-        #10 // invalid
+        #10 // invalid - wrong type
 
         message = 32'b0001_0000_11110000_00001111_00000000;
         test_value_a = 8'b00000000;
         test_value_b = 8'b00000000;
-        test_reject_reason = 4'b0001;  // invalid
+        test_reject_reason = 4'b0001;  // invalid - wrong type
         #10
 
         $display("Passes: %0d, Fails: %0d", pass_count, fail_count); // finish sim and display results

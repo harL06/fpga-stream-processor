@@ -22,7 +22,9 @@ module top_pipeline(
     message_filter filter (
         .message_type(message_type),
         .message_valid(message_valid),
-        .reject_reason(reject_reason)
+        .reject_reason(reject_reason),
+        .value_a(input_val_a),
+        .value_b(input_val_b)
     );
 
     // set outputs only if the message is valid
