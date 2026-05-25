@@ -7,17 +7,22 @@ This folder contains the Verilog design files for the project.
 The current setup includes a simple message parser, a filter to check for an invalid type and a pipeline to connect these and decide the output based on the parsed input and filter result.
 
 ```text
-                ┌────────────────┐                   ┌────────────────┐               
-    message     │                │   message type    │                │  reject reason
-───────────────►│ message_parser ├──────────────────►│ message_filter ├───────────►   
-                │                │                   │                │               
-                └───────┬────────┘                   └────────────────┘               
-                        │                                                             
-                        │                                                             
-                        │                                                             
-                        │                                                             
-                        └─────────────────────────────────────────────────────────►   
-                                                                           values a&b 
+                ┌────────────────┐   message type    ┌────────────────┐                              
+    message     │                ├──────────────────►│                │  reject reason               
+───────────────►│ message_parser │                   │ message_filter ├───────────►                  
+                │                ├──────────────────►│                │                              
+                └────────────────┘    values a&b     └────┬────┬──────┘                              
+                                                          │    │                                     
+                                                          │    │                                     
+                                                          │    │                                     
+                                                          │    │                                     
+                                                          │    │                                     
+                                                 input a&b│    │ valid message?                      
+                                                          │    │    ┌───────────────────┐  output a&b
+                                                          │    └───►│                   │            
+                                                          │         │ output_formatter  ├───────────►
+                                                          └────────►│                   │            
+                                                                    └───────────────────┘            
 ```
 
 ## Message format
@@ -31,3 +36,12 @@ The current message is 32 bits wide:
 | 23:16 | `value_a`      | 8 bits |
 | 15:8  | `value_b`      | 8 bits |
 | 7:0   | `flags`        | 8 bits |
+
+## Rejection Reasons
+
+| Rejection Number | Reason              |
+| ---------------- | ------------------- |
+| 0                | not rejected        |
+| 1                | invalid type        |
+| 2                | value A above limit |
+| 3                | value B above limit |
