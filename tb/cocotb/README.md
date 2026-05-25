@@ -18,4 +18,8 @@ sudo apt install iverilog
 
 ## Current status
 
-Under development
+Testbench with fixed testcases, mirroring those in the initial verilog tb.
+
+- [x] Recreate Verilog TB in Python
+- [ ] Write a Python Software Reference Model to compare to the hardware model
+- [ ] Randomised testing & edge-case testing against software model
