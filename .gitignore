@@ -1,0 +1,11 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# cocotb / simulation outputs
+sim_build/
+results.xml
+*.vcd
+*.fst
+*.ghw
