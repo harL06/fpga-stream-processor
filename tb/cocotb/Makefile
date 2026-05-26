@@ -15,7 +15,8 @@ COCOTB_TOPLEVEL = top_pipeline
 # ================================
 # select which test should be used
 # ================================
-COCOTB_TEST_MODULES = test_reference_cases
+COCOTB_TEST_MODULES = test_random_reference
+# COCOTB_TEST_MODULES = test_reference_cases
 # COCOTB_TEST_MODULES = test_direct_cases
 
 # include cocotb's make rules to take care of the simulator setup

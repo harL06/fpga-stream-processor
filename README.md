@@ -1,4 +1,4 @@
-# fpga-stream-processor
+# FPGA Stream Processor
 
 A self-directed Verilog project for simple streaming-style data processing in RTL.
 

@@ -18,11 +18,12 @@ sudo apt install iverilog
 
 ## Current status
 
-The current tests reproduce the original Verilog testbench cases and compare the RTL output against either manually specified expected values or a Python reference model.
+Current verification includes fixed cocotb tests, a Python reference model, and randomised RTL vs model testing.
 
 - [x] Recreate Verilog TB in Python
-- [x] Write a Python Software Reference Model to compare to the hardware model
-- [ ] Randomised testing & edge-case testing against software model
+- [x] Write a Python software reference model to compare to the hardware Verilog design
+- [x] Randomised input testing against reference model
+- [ ] Edge case testing
 
 ## Files
 
@@ -32,3 +33,4 @@ The current tests reproduce the original Verilog testbench cases and compare the
 | `test_reference_cases.py`  | Fixed input cases checked against Python reference model      |
 | `test_random_reference.py` | Randomised input cases checked against Python reference model |
 | `reference_model.py`       | Python software model of the expected RTL behaviour           |
+| `message_generator.py`     | Generates randomised input messages for testing               |
