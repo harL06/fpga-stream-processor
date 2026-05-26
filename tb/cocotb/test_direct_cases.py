@@ -1,14 +1,17 @@
-# Fixed tests from Verilog Testbench
+# Fixed tests from Verilog Testbench, manually checked output
 
 import cocotb
 from cocotb.triggers import Timer
 
+import reference_model
+
 # Design under test
 @cocotb.test()
-async def fixed_test_top_pipeline(dut):
+async def fixed_direct_cases(dut):
 
     # === Test Case 1 ==== #
-    dut.message.value = 0b0000_0000_11111111_00001111_00000000
+    message = 0b0000_0000_11111111_00001111_00000000
+    dut.message.value = message
     await Timer(1, unit="ns") # allow message value to settle
 
     value_a = int(dut.value_a.value) #255
