@@ -2,9 +2,21 @@
 
 This folder contains cocotb testbenches and simulations for the RTL modules.
 
+## Run the tests
+
+From the repo root:
+
+```bash
+source .venv/bin/activate
+cd tb/cocotb
+make
+```
+
+This runs the cocotb tests using Icarus Verilog and writes simulator output to the terminal.
+
 ## Requirements
 
-Python packages:
+Python packages (run in repo root):
 
 ```bash
 pip install -r requirements.txt
