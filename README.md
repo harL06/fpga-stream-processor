@@ -26,7 +26,7 @@ The project implements a simple message processing pipeline that parses fixed-wi
 
 ## Verification
 
-The project currently includes two cocotb tests (random testing under progress):
+The project currently includes fixed-case and randomised cocotb tests:
 
 | File                       | Purpose                                                       |
 | -------------------------- | ------------------------------------------------------------- |
@@ -37,5 +37,5 @@ The project currently includes two cocotb tests (random testing under progress):
 
 ## Status
 
-Working simple RTL pipeline with fixed Verilog and cocotb tests.
-A Python reference model is used to check outputs against expected behaviour, with randomised and edge-case testing planned next.
+Working simple RTL pipeline with Verilog and cocotb verification.
+A Python reference model is used to check fixed and randomised test cases against expected behaviour.
