@@ -1,0 +1,35 @@
+name: Make cocotb
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v4
+
+    - name: set up python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.13.13"
+
+    - name: install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y iverilog
+
+    - name: install python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: run cocotb tests
+      working-directory: tb/cocotb
+      run: make
