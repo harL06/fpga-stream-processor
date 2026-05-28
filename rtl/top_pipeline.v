@@ -14,6 +14,13 @@ module top_pipeline(
 
     reg [31:0] reg_message;
     reg reg_message_valid;
+
+    wire [7:0] value_a_wire;
+    wire [7:0] value_b_wire;
+
+    wire message_accept;
+    wire [3:0] reject_reason_wire;
+
     always @ (posedge clk) begin // synchronous logic
         // input sampling logic
         if (reset) begin // reset HIGH
@@ -53,16 +60,18 @@ module top_pipeline(
     // parse diferent vars from the input message
     wire [7:0] input_val_a, input_val_b;
     wire [3:0] message_type;
+    wire [3:0] channel_id; // will be used in fut ver
+    wire [7:0] flags;      // will be used in fut ver
     message_parser parser (
         .message(reg_message), // input the most recent sampled input
         .value_a(input_val_a),
         .value_b(input_val_b),
-        .message_type(message_type)
+        .message_type(message_type),
+        .channel_id(channel_id),
+        .flags(flags)
     );
 
     // pass parsed values into message filter
-    wire message_accept;
-    wire [3:0] reject_reason_wire;
     message_filter filter (
         .message_type(message_type),
         .message_valid(message_accept),
@@ -71,8 +80,6 @@ module top_pipeline(
         .value_b(input_val_b)
     );
 
-    wire [7:0] value_a_wire; // wire values driven by combo logic, will be sampled on clk edge
-    wire [7:0] value_b_wire;
     // set outputs only if the message is valid
     output_formatter out_format (
         .input_val_a(input_val_a),

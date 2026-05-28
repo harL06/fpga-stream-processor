@@ -27,7 +27,7 @@ module message_filter
         else begin
             message_valid = 1;
             reject_reason = 4'b0000; // passes through filter
-        end 
+        end
     end
 
 endmodule
