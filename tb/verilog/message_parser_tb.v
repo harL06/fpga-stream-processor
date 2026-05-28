@@ -33,8 +33,8 @@ module top_pipeline_tb();
         pass_count = 0;
     end
 
-    always @ (*) begin // pass/fail checks sampled
-        if (!reset & output_valid) begin
+    always @ (posedge output_valid) begin // pass/fail checks sampled when output valid
+        if (!reset) begin
             if (value_a == test_value_a &&
                 value_b == test_value_b &&
                 reject_reason == test_reject_reason)
@@ -44,7 +44,6 @@ module top_pipeline_tb();
             else
                 fail_count <= fail_count + 1;
         end
-        #20;
     end
 
     initial begin
