@@ -4,7 +4,9 @@ This folder contains the Verilog design files for the project.
 
 ## Current status
 
-The current setup includes a simple message parser, a filter to check for an invalid type and a pipeline to connect these and decide the output based on the parsed input and filter result.
+The setup includes a simple message parser, a filter to check for an invalid type and a pipeline to connect these and decide the output based on the parsed input and filter result.
+
+The top-level pipeline is also now synchronous, with registered input/output behaviour and `input_valid` / `output_valid` signalling.
 
 ```text
                 ┌────────────────┐   message type    ┌────────────────┐                              

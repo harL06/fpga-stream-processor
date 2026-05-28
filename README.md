@@ -20,13 +20,12 @@ flowchart LR
 
 ## Current Features
 
-- 32-bit message parser
-- Simple parameterised message filter
-- Output formatter for accepted/rejected messages
-- Top-level RTL pipeline
-- Original Verilog testbench
-- `cocotb` tests using fixed input cases
-- Python reference model for checking expected behaviour
+- Synchronous Verilog message-processing pipeline
+- 32-bit parser, parameterised filter, and output formatter
+- `cocotb` verification with fixed and randomised test cases
+- Python reference model for expected behaviour
+- GitHub Actions CI for automated tests
+- Vivado synthesis and timing reports
 
 ## Message Format
 
@@ -49,7 +48,9 @@ The project currently includes fixed-case and randomised cocotb tests. The cocot
 | `test_random_reference.py` | Randomised input cases checked against Python reference model |
 | `reference_model.py`       | Python software model of the expected RTL behaviour           |
 
-Example Output:
+Vivado synthesis and timing reports are included in [`docs/synthesis.md`](docs/synthesis.md).
+
+Example `cocotb` Output:
 
 ```text
 1000000.00ns INFO     test                               1000000 tests ran successfully...
