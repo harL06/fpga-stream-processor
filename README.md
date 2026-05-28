@@ -1,5 +1,7 @@
 # FPGA Stream Processor
 
+![cocotb](https://github.com/harL06/fpga-stream-processor/actions/workflows/make-cocotb.yml/badge.svg)
+
 A self-directed Verilog project for simple streaming-style data processing in RTL.
 
 The project implements a simple message processing pipeline that parses fixed-width input messages, applies filtering rules, and produces an output decision. It is a learning project about RTL design, simulation and verifying hardware designs against a software reference model.
@@ -26,7 +28,7 @@ The project implements a simple message processing pipeline that parses fixed-wi
 
 ## Verification
 
-The project currently includes fixed-case and randomised cocotb tests:
+The project currently includes fixed-case and randomised cocotb tests. The cocotb randomised tests run automatically using GitHub Actions.
 
 | File                       | Purpose                                                       |
 | -------------------------- | ------------------------------------------------------------- |
@@ -37,18 +39,18 @@ The project currently includes fixed-case and randomised cocotb tests:
 
 Example Output:
 
-````text
+```text
 1000000.00ns INFO     test                               1000000 tests ran successfully...
 1000000.00ns INFO     test                               1000000/1000000: PASS
 1000000.00ns INFO     cocotb.regression                  test_random_reference.random_reference_cases passed
 1000000.00ns INFO     cocotb.regression
-******************************************************************************************************
+
 ** TEST                                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
-******************************************************************************************************
+
 ** test_random_reference.random_reference_cases   PASS     1000000.00          25.39      39384.08  **
-******************************************************************************************************
+
 ** TESTS=1 PASS=1 FAIL=0 SKIP=0                            1000000.00          25.40      39375.44  **
-******************************************************************************************************
+
 ```
 
 ## Status
