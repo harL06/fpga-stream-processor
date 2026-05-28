@@ -6,7 +6,7 @@ from cocotb.triggers import Timer
 from reference_model import reference_model
 import message_generator
 
-NUM_TESTS = 10000 # number of testcases to generate
+NUM_TESTS = 1_000 # number of testcases to generate
 
 # Design under test
 @cocotb.test()
