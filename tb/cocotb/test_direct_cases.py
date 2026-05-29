@@ -1,10 +1,8 @@
 # Fixed tests from Verilog Testbench, manually checked output
 
 import cocotb
-from cocotb.triggers import Timer, RisingEdge, ClockCycles, ReadOnly
+from cocotb.triggers import RisingEdge, ClockCycles, ReadOnly
 from cocotb.clock import Clock
-
-import reference_model
 
 # Design under test
 @cocotb.test()
