@@ -53,12 +53,17 @@ Vivado synthesis and timing reports are included in [`docs/synthesis.md`](docs/s
 Example `cocotb` Output:
 
 ```text
-1000000.00ns INFO     test                               1000000 tests ran successfully...
-1000000.00ns INFO     cocotb.regression                  test_random_reference.random_reference_cases passed
+   210.00ns INFO     cocotb.regression                  test_direct_cases.fixed_direct_cases passed
+   430.00ns INFO     cocotb.regression                  test_reference_cases.fixed_reference_cases passed
+300450.00ns INFO     test                               10000 tests ran successfully...
+300450.00ns INFO     cocotb.regression                  test_random_reference.random_reference_cases passed
+
 
 ** TEST                                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
-** test_random_reference.random_reference_cases   PASS     1000000.00          25.39      39384.08  **
-** TESTS=1 PASS=1 FAIL=0 SKIP=0                            1000000.00          25.40      39375.44  **
+** test_direct_cases.fixed_direct_cases           PASS         210.00           0.00     105434.98  **
+** test_reference_cases.fixed_reference_cases     PASS         220.00           0.00     126716.13  **
+** test_random_reference.random_reference_cases   PASS      300020.00           1.17     257507.56  **
+** TESTS=3 PASS=3 FAIL=0 SKIP=0                             300450.00           1.22     245419.42  **
 ```
 
 ## Status

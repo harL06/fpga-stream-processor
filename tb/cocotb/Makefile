@@ -15,7 +15,7 @@ COCOTB_TOPLEVEL = top_pipeline
 # ================================
 # select which test should be used
 # ================================
-COCOTB_TEST_MODULES = test_random_reference
+COCOTB_TEST_MODULES = test_direct_cases,test_reference_cases,test_random_reference
 # COCOTB_TEST_MODULES = test_reference_cases
 # COCOTB_TEST_MODULES = test_direct_cases
 

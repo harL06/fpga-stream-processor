@@ -51,11 +51,11 @@ async def random_reference_cases(dut):
 
         # compare sim results to reference model (pass/fail criteria)
         assert value_a == ref_results["a"], \
-            f"FAIL: simulated value_a ({value_a}) =/= model value_a ({ref_results["a"]})"
+            f"FAIL: simulated value_a ({value_a}) =/= model value_a ({ref_results['a']})"
         assert value_b == ref_results["b"], \
-            f"FAIL: simulated value_b ({value_b}) =/= model value_b ({ref_results["b"]})"
+            f"FAIL: simulated value_b ({value_b}) =/= model value_b ({ref_results['b']})"
         assert reject_reason == ref_results["reject_reason"], \
-            f"FAIL: simulated reject_reason ({reject_reason}) =/= model reject_reason ({ref_results["reject_reason"]})"
+            f"FAIL: simulated reject_reason ({reject_reason}) =/= model reject_reason ({ref_results['reject_reason']})"
 
         await RisingEdge(dut.clk) # set next message at next rising edge
 
