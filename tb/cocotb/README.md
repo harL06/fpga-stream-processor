@@ -31,11 +31,12 @@ sudo apt install iverilog
 ## Current status
 
 Current verification includes fixed cocotb tests, a Python reference model, and randomised RTL vs model testing.
+The cocotb tests drive the synchronous pipeline by generating `clk`, `reset`, `input_valid`, and `output_valid`.
 
 - [x] Recreate Verilog TB in Python
 - [x] Write a Python software reference model to compare to the hardware Verilog design
 - [x] Randomised input testing against reference model
-- [ ] Edge case testing
+- [X] Edge case testing
 
 ## Files
 

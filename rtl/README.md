@@ -4,27 +4,35 @@ This folder contains the Verilog design files for the project.
 
 ## Current status
 
-The setup includes a simple message parser, a filter to check for an invalid type and a pipeline to connect these and decide the output based on the parsed input and filter result.
+The RTL implements a synchronous message-processing pipeline.
 
-The top-level pipeline is also now synchronous, with registered input/output behaviour and `input_valid` / `output_valid` signalling.
+`top_pipeline.v` provides a clocked wrapper, including reset handling, input sampling, registered outputs, and `input_valid` / `output_valid` signalling.
 
-```text
-                ┌────────────────┐   message type    ┌────────────────┐                              
-    message     │                ├──────────────────►│                │  reject reason               
-───────────────►│ message_parser │                   │ message_filter ├───────────►                  
-                │                ├──────────────────►│                │                              
-                └────────────────┘    values a&b     └────┬────┬──────┘                              
-                                                          │    │                                     
-                                                          │    │                                     
-                                                          │    │                                     
-                                                          │    │                                     
-                                                          │    │                                     
-                                                 input a&b│    │ valid message?                      
-                                                          │    │    ┌───────────────────┐  output a&b
-                                                          │    └───►│                   │            
-                                                          │         │ output_formatter  ├───────────►
-                                                          └────────►│                   │            
-                                                                    └───────────────────┘            
+The internal processing modules are all combinational:
+
+- `message_parser.v` splits the 32-bit input message into seperate fields.
+- `message_filter.v` checks the parsed fields and produces an accept/reject decision.
+- `output_formatter.v` sets the registered output values based on the filter result.
+
+```mermaid
+flowchart LR
+    A("input") --> |"32-bit message"| B["input register"]
+    A --> |"input_valid"| B
+
+    CLK["clk & reset"] -.-> B
+    CLK -.-> F["output registers"]
+
+    B --> C["message_parser"]
+    C --> |message_type| D["message_filter"]
+    C --> |value_a & value_b| D
+    C --> |value_a & value_b| E["output_formatter"]
+    D --> |accept/reject| E
+    D --> |reject_reason| F
+    E --> |formatted values| F
+
+    F --> |"value_a & value_b"| G("output")
+    F --> |"reject_reason"| G
+    F --> |"output_valid"| G
 ```
 
 ## Message format

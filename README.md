@@ -8,15 +8,13 @@ The project implements a simple message processing pipeline that parses fixed-wi
 
 ```mermaid
 flowchart LR
-    A(input) --> |32-bit input message| B(message parser)
-    B --> |message type| C(message filter)
-    B --> |values| C
-
-    B --> |values| D(Output Formatter)
-    C --> |accepted/rejected| D
-    D --> |values| E(output)
-    D --> |reject reason| E
+    A("32-bit message<br/>input_valid") --> B["input register<br/>(clk, reset)"]
+    B --> C["parser / filter / formatter"]
+    C --> D["output register<br/>(clk, reset)"]
+    D --> E("value_a / value_b<br/>reject_reason<br/>output_valid")
 ```
+
+For flowchart with module-level detail, see [`rtl/README.md`](rtl/README.md).
 
 ## Current Features
 
@@ -41,6 +39,8 @@ flowchart LR
 
 The project currently includes fixed-case and randomised cocotb tests. The cocotb randomised tests run automatically using GitHub Actions.
 
+For cocotb setup and test-running instructions, see [`tb/cocotb/README.md`](tb/cocotb/README.md).
+
 | File                       | Purpose                                                       |
 | -------------------------- | ------------------------------------------------------------- |
 | `test_direct_cases.py`     | Fixed input cases with manually specified expected outputs    |
@@ -63,5 +63,4 @@ Example `cocotb` Output:
 
 ## Status
 
-Working simple RTL pipeline with Verilog and cocotb verification.
-A Python reference model is used to check fixed and randomised test cases against expected behaviour.
+Synchronous RTL pipeline is implemented and verified with fixed and randomised cocotb tests against a Python reference model. Vivado synthesis and post-synthesis timing checks have also been run for the current design.
